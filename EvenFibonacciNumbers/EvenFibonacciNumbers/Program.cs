@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 /**Problem 2 from Project Euler
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
  * 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
  * By considering the terms in the Fibonacci sequence whose values do not exceed 4 million,
  * find the sum of the even-valued terms.
+ * 4613732
  **/
 namespace EvenFibonacciNumbers
 {
@@ -17,6 +19,24 @@ namespace EvenFibonacciNumbers
     {
         static void Main(string[] args)
         {
+            int a = 1;
+            int b = 2;
+            int fib = 0;
+            //begin the total at 2 since 'b' is set to 2 and that is an even fibonacci #
+            int total = 2;
+            while(a+b <= 4000000)
+            {
+                fib = a + b;
+                //checks if the current fibonacci number is even and adds to total if it is
+                if(fib % 2 == 0)
+                {
+                    total += fib;
+                }
+                a = b;
+                b = fib;
+            }
+            Console.WriteLine("Total for all even fibonacci numbers less than 4 mil = " +total);
+            Thread.Sleep(10000);
         }
     }
 }
